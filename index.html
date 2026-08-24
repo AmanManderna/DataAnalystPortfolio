@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aman Manderna — Data Analyst</title>
+<meta name="description" content="Aman Manderna — Data Analyst specializing in SQL, Python, Power BI and dashboard development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N0T9WGLBBM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N0T9WGLBBM');
+</script>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">AM<span class="logo-dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-ghost nav-cta">Resume</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <canvas id="particles" class="particles"></canvas>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="eyebrow"><span class="status-dot"></span>Available for opportunities</p>
+      <h1 class="hero-title">Aman<br>Manderna</h1>
+      <p class="hero-role">Data Analyst — SQL · Python · Power BI</p>
+      <p class="hero-sub">I turn raw, messy, six-figure-row datasets into dashboards and decisions.
+      Currently analyzing 100K+ record datasets at GlobalLogic, with a track record of cutting
+      processing time by 75% and lifting KPI tracking accuracy by 35%.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-outline">Download Résumé</a>
+      </div>
+      <div class="hero-links">
+        <a href="mailto:amanmanderna98765@gmail.com" aria-label="Email">Email</a>
+        <span class="dot-sep">·</span>
+        <a href="https://linkedin.com/in/AmanManderna" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+        <span class="dot-sep">·</span>
+        <a href="https://github.com/AmanManderna" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="dashboard-card" id="dashCard">
+        <div class="dashboard-head">
+          <div class="dash-title">
+            <span class="pulse"></span>
+            <span>impact_metrics.live</span>
+          </div>
+          <div class="dash-tag">real-time</div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat-num" data-count="75" data-suffix="%">0%</div>
+            <div class="stat-label">Faster data pipelines</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" data-count="60" data-suffix="%">0%</div>
+            <div class="stat-label">ETL efficiency gained</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" data-count="35" data-suffix="%">0%</div>
+            <div class="stat-label">KPI tracking accuracy</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" data-count="100" data-suffix="K+">0</div>
+            <div class="stat-label">Rows analyzed</div>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <div class="chart-label">
+            <span>Rows processed / month</span>
+            <span class="chart-trend">▲ 40%</span>
+          </div>
+          <svg viewBox="0 0 320 90" class="mini-chart" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <polyline class="chart-area" fill="url(#chartFill)"
+              points="0,70 40,64 80,66 120,50 160,52 200,34 240,38 280,18 320,12 320,90 0,90" />
+            <polyline class="chart-line" fill="none"
+              points="0,70 40,64 80,66 120,50 160,52 200,34 240,38 280,18 320,12" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>scroll</span><div class="scroll-line"></div></div>
+</header>
+
+<main>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="section-inner about-grid">
+    <div class="section-head">
+      <p class="eyebrow-sm">01 · About</p>
+      <h2 class="section-title">Numbers only matter<br>if someone acts on them.</h2>
+      <p class="section-text">
+        I'm a data analyst based in Gurugram with 1+ year of hands-on experience turning
+        structured and unstructured data into decisions. My work spans SQL querying, Python-based
+        EDA, ETL pipeline development, and dashboarding in Power BI and Tableau — always with the
+        same goal: give teams a clear, accurate view of what's actually happening in their data.
+      </p>
+      <p class="section-text">
+        At GlobalLogic I've been recognized four times as a Key Contributor for high-volume,
+        high-accuracy analytical work supporting cross-functional AI/ML teams. Before that, I
+        built end-to-end analysis and visualization projects during my internship at Unified Mentor.
+      </p>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="terminal-title">whoami.sh</span>
+      </div>
+      <div class="terminal-body" id="terminalBody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section class="section section-alt" id="skills">
+  <div class="section-inner">
+    <p class="eyebrow-sm">02 · Toolkit</p>
+    <h2 class="section-title">What I work with.</h2>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Languages &amp; Tools</h3>
+        <div class="tags">
+          <span class="tag tag-accent">SQL</span>
+          <span class="tag tag-accent">Python</span>
+          <span class="tag tag-accent">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Excel</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">DAX</span>
+          <span class="tag">Power Query</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Core Concepts</h3>
+        <div class="tags">
+          <span class="tag">Exploratory Data Analysis</span>
+          <span class="tag">Data Cleaning</span>
+          <span class="tag">ETL Development</span>
+          <span class="tag">Data Modeling</span>
+          <span class="tag">Data Warehousing</span>
+          <span class="tag">Dashboard Development</span>
+          <span class="tag">KPI Reporting</span>
+          <span class="tag">Statistical Analysis</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Strengths</h3>
+        <div class="tags">
+          <span class="tag">Data Quality</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Attention to Detail</span>
+          <span class="tag">Business Intelligence</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Working With Others</h3>
+        <div class="tags">
+          <span class="tag">Stakeholder Communication</span>
+          <span class="tag">Team Collaboration</span>
+          <span class="tag">Time Management</span>
+          <span class="tag">Data-Driven Decisions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="section" id="experience">
+  <div class="section-inner">
+    <p class="eyebrow-sm">03 · Experience</p>
+    <h2 class="section-title">Where I've worked.</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <span class="timeline-dot"></span>
+          <span class="timeline-track"></span>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">Jun 2025 — Present</div>
+          <h3 class="timeline-role">Associate Analyst</h3>
+          <div class="timeline-org">GlobalLogic</div>
+          <ul class="timeline-list">
+            <li>Perform EDA on structured datasets of 100,000+ rows using SQL and Excel, identifying data quality issues and improving reporting accuracy.</li>
+            <li>Conduct data research, cleaning, and preprocessing to maintain structured datasets, collaborating with cross-functional teams to enable data-driven insights for AI/ML projects.</li>
+            <li>Recognized <strong>4 times as a Key Contributor (KC)</strong> for high-volume, high-quality analytical work with strong accuracy and consistency.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <span class="timeline-dot"></span>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">Apr 2025 — May 2025</div>
+          <h3 class="timeline-role">Data Analyst Intern</h3>
+          <div class="timeline-org">Unified Mentor</div>
+          <ul class="timeline-list">
+            <li>Performed statistical data analysis using Python to derive actionable insights from real-world, multi-domain datasets.</li>
+            <li>Built end-to-end data analysis and visualization projects using Python and Tableau; documented methodology and findings on GitHub for reproducibility.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="section section-alt" id="projects">
+  <div class="section-inner">
+    <p class="eyebrow-sm">04 · Projects</p>
+    <h2 class="section-title">Selected work.</h2>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <article class="project-card">
+        <div class="project-visual">
+          <svg viewBox="0 0 300 140" class="project-chart" preserveAspectRatio="none">
+            <g class="bars bars-uber"></g>
+          </svg>
+          <div class="project-visual-label">Rides by hour of day</div>
+        </div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>Uber Trip Analysis</h3>
+            <span class="project-tools">Power BI · Python</span>
+          </div>
+          <p>Performed EDA on 15,000+ ride records, uncovering 40% higher demand during peak
+          hours and location-based ride concentration patterns to support operational planning.</p>
+          <div class="project-stats">
+            <span><strong>15K+</strong> ride records</span>
+            <span><strong>+40%</strong> peak demand</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project-card">
+        <div class="project-visual">
+          <svg viewBox="0 0 300 140" class="project-chart" preserveAspectRatio="none">
+            <g class="bars bars-ev"></g>
+          </svg>
+          <div class="project-visual-label">EV adoption by state</div>
+        </div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>EV Sales by State, India</h3>
+            <span class="project-tools">Excel · Power BI</span>
+          </div>
+          <p>State-wise EV sales analysis on 10,000+ data points, uncovering regional adoption
+          disparities — high-infrastructure states showed 2x higher adoption, and incentive-driven
+          states saw 30%+ sales growth.</p>
+          <div class="project-stats">
+            <span><strong>10K+</strong> data points</span>
+            <span><strong>2x</strong> adoption in top states</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project-card">
+        <div class="project-visual">
+          <svg viewBox="0 0 300 140" class="project-chart" preserveAspectRatio="none">
+            <g class="bars bars-linkedin"></g>
+          </svg>
+          <div class="project-visual-label">Top skills in demand</div>
+        </div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>LinkedIn Job Market Analytics</h3>
+            <span class="project-tools">Power BI · Python</span>
+          </div>
+          <p>Scraped and analyzed 5,000+ job postings to uncover skill demand, salary
+          distributions, and hiring hotspots across 10+ industries, via a KPI-driven Power BI
+          dashboard with 5+ interactive visuals.</p>
+          <div class="project-stats">
+            <span><strong>5K+</strong> postings analyzed</span>
+            <span><strong>10+</strong> industries covered</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION & CERTS ============ -->
+<section class="section" id="education">
+  <div class="section-inner edu-grid">
+    <div>
+      <p class="eyebrow-sm">05 · Education</p>
+      <h2 class="section-title">Academic background.</h2>
+
+      <div class="edu-card">
+        <div class="edu-top">
+          <h3>Master of Computer Applications (MCA)</h3>
+          <span class="edu-score">CGPA 7.51</span>
+        </div>
+        <div class="edu-org">Chandigarh University · 2023 – 2025</div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-top">
+          <h3>Diploma in Computer Applications (DCA)</h3>
+          <span class="edu-score">76%</span>
+        </div>
+        <div class="edu-org">Maharshi Dayanand University · 2022 – 2023</div>
+      </div>
+    </div>
+
+    <div>
+      <p class="eyebrow-sm">06 · Certifications</p>
+      <h2 class="section-title">Credentials.</h2>
+      <ul class="cert-list">
+        <li><span class="cert-mark">✓</span> Introduction to Data Analytics — <em>IBM</em></li>
+        <li><span class="cert-mark">✓</span> Excel Basics for Data Analysis — <em>Coursera</em></li>
+        <li><span class="cert-mark">✓</span> Data Visualization &amp; Dashboards with Excel &amp; Cognos — <em>IBM</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="section-inner contact-inner">
+    <p class="eyebrow-sm">07 · Contact</p>
+    <h2 class="section-title contact-title">Let's talk about your data.</h2>
+    <p class="section-text contact-text">
+      Open to Data Analyst / Business Intelligence roles. If you've got a dataset that needs a
+      story, or a role that needs an analyst — I'd love to hear from you.
+    </p>
+    <div class="contact-actions">
+      <a href="mailto:amanmanderna98765@gmail.com" class="btn btn-primary">amanmanderna98765@gmail.com</a>
+      <a href="tel:+919812750843" class="btn btn-outline">+91 98127 50843</a>
+    </div>
+    <div class="contact-socials">
+      <a href="https://linkedin.com/in/AmanManderna" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://github.com/AmanManderna" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="assets/Aman_Manderna_Resume.pdf" download>Download Résumé ↓</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Aman Manderna</span>
+    <span class="footer-loc">Gurugram, Haryana, India</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
