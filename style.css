@@ -432,6 +432,12 @@ h1, h2, h3{ font-family: var(--font-display); font-weight: 600; letter-spacing: 
   border-color: var(--accent-dim);
   box-shadow: 0 24px 50px -20px rgba(0,0,0,0.55);
 }
+.project-card-link{ position: relative; cursor: pointer; }
+.project-card-anchor{ position: absolute; inset: 0; z-index: 2; }
+.project-cta{
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent);
+  margin-top: 6px; display: inline-block;
+}
 .project-visual{
   position: relative; padding: 18px 18px 0; background: var(--bg-alt);
   border-bottom: 1px solid var(--border-soft);

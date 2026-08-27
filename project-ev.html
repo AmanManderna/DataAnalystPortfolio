@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Sales by State, India — Case Study | Aman Manderna</title>
+<meta name="description" content="State-wise EV sales analysis across India (2014-2023), uncovering regional adoption disparities and growth drivers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="project.css">
+<style>
+  :root{
+    --proj-accent: #22c55e; --proj-accent-dim: #15803d; --proj-accent-light: #86efac; --proj-accent-soft: rgba(34,197,94,0.14);
+    --proj-secondary: #38bdf8; --proj-secondary-dim: #0369a1; --proj-secondary-light: #a5e6ff; --proj-secondary-soft: rgba(56,189,248,0.14);
+  }
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N0T9WGLBBM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N0T9WGLBBM');
+</script>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">AM<span class="logo-dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-ghost nav-cta">Resume</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="proj-hero">
+  <div class="section-inner">
+    <a href="index.html#projects" class="proj-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to projects
+    </a>
+    <p class="proj-eyebrow">Case study · Excel &amp; Power BI</p>
+    <h1 class="proj-title">EV Sales by State, India</h1>
+    <p class="proj-lede">
+      Exploratory analysis of electric vehicle sales across Indian states from 2014–2023 —
+      uncovering which states lead adoption, which vehicle types dominate, and where
+      incentive-driven growth is strongest.
+    </p>
+    <div class="proj-meta">
+      <span class="tag">Python</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">Excel</span>
+      <span class="tag">Power BI</span>
+      <span class="tag">Seaborn</span>
+    </div>
+    <div class="proj-actions">
+      <a href="https://github.com/AmanManderna/EV_Sales_India" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub ↗</a>
+      <a href="https://github.com/AmanManderna/EV_Sales_India/blob/main/Electric%20Vehicle%20Sales%20by%20State%20in%20India.xls" target="_blank" rel="noopener" class="btn btn-outline">Full Dataset ↗</a>
+    </div>
+
+    <div class="proj-stats-strip">
+      <div class="pstat"><div class="pstat-num">96K+</div><div class="pstat-label">Records analyzed</div></div>
+      <div class="pstat"><div class="pstat-num">2x</div><div class="pstat-label">Adoption in top states</div></div>
+      <div class="pstat"><div class="pstat-num">30%+</div><div class="pstat-label">Growth in incentive states</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="proj-section">
+    <div class="proj-section-inner">
+      <p class="proj-eyebrow">The problem</p>
+      <h2 class="proj-h2">EV adoption in India isn't uniform — and that matters for planning.</h2>
+      <p class="proj-text">
+        As EV adoption accelerates nationally, sales are not distributed evenly across India's
+        states. For manufacturers deciding where to expand dealer networks, and for policymakers
+        assessing whether incentives are working, understanding <strong>which states and vehicle
+        categories are actually driving growth</strong> is critical.
+      </p>
+      <p class="proj-text">
+        This project analyzes state-level EV sales data spanning 2014–2023 to surface adoption
+        disparities, vehicle-type trends, and the states where policy incentives appear to be
+        moving the needle.
+      </p>
+    </div>
+  </section>
+
+  <section class="proj-section proj-section-alt">
+    <div class="proj-section-inner">
+      <p class="proj-eyebrow">The dataset</p>
+      <h2 class="proj-h2">Electric Vehicle Sales by State in India</h2>
+      <p class="proj-text">
+        Sourced and preprocessed from Clean Mobility Shift, covering ~96,000+ records with
+        year, month, state, vehicle class/category/type, and sales quantity fields.
+      </p>
+
+      <div class="dataset-card">
+        <div class="dataset-head">
+          <span>preview.csv</span>
+          <span class="badge">first 5 rows · illustrative</span>
+        </div>
+        <div class="dataset-table-wrap">
+          <table class="dataset-table">
+            <thead><tr><th>Year</th><th>Month_Name</th><th>State</th><th>Vehicle_Category</th><th>Vehicle_Type</th><th>EV_Sales_Quantity</th></tr></thead>
+            <tbody>
+              <tr><td>2022</td><td>January</td><td>Maharashtra</td><td>2-Wheeler</td><td>Scooter</td><td>4210</td></tr>
+              <tr><td>2022</td><td>January</td><td>Karnataka</td><td>2-Wheeler</td><td>Scooter</td><td>3894</td></tr>
+              <tr><td>2022</td><td>January</td><td>Uttar Pradesh</td><td>4-Wheeler</td><td>Hatchback</td><td>1256</td></tr>
+              <tr><td>2022</td><td>February</td><td>Delhi</td><td>2-Wheeler</td><td>Scooter</td><td>2987</td></tr>
+              <tr><td>2022</td><td>February</td><td>Gujarat</td><td>4-Wheeler</td><td>Sedan</td><td>987</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="dataset-note">Sample rows shown for preview — see the full dataset on GitHub for exact values.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="proj-section-inner wide">
+      <p class="proj-eyebrow">Visualizations</p>
+      <h2 class="proj-h2">What the analysis shows</h2>
+
+      <div class="viz-grid">
+        <div class="viz-card">
+          <div class="viz-title">Top states by EV sales</div>
+          <div class="viz-sub">Cumulative units, 2014–2023</div>
+          <div class="chart3d compact" id="chartStates"></div>
+        </div>
+
+        <div class="viz-card">
+          <div class="viz-title">Vehicle category share</div>
+          <div class="viz-sub">Two-wheelers vs four-wheelers vs others</div>
+          <div class="donut" id="chartCategory"></div>
+        </div>
+
+        <div class="viz-card">
+          <div class="viz-title">Sales growth by year</div>
+          <div class="viz-sub">Relative EV sales, 2019–2023</div>
+          <div class="linechart" id="chartYear"></div>
+        </div>
+
+        <div class="viz-card">
+          <div class="viz-title">Incentive states vs others</div>
+          <div class="viz-sub">Adoption rate vs infrastructure score</div>
+          <div class="scatter" id="chartIncentive"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section proj-section-alt">
+    <div class="proj-section-inner">
+      <p class="proj-eyebrow">Insights</p>
+      <h2 class="proj-h2">What the data revealed</h2>
+      <div class="insights-list">
+        <div class="insight-item"><span class="insight-mark">01</span><p><strong>EV sales have grown significantly since 2019</strong>, accelerating sharply in the last two to three years of the dataset.</p></div>
+        <div class="insight-item"><span class="insight-mark">02</span><p><strong>Maharashtra, Karnataka, and Uttar Pradesh lead</strong> in total EV sales, roughly <strong>2x</strong> the volume of mid-tier states.</p></div>
+        <div class="insight-item"><span class="insight-mark">03</span><p><strong>Two-wheelers and four-wheelers dominate</strong> the market, with two-wheelers making up the larger share overall.</p></div>
+        <div class="insight-item"><span class="insight-mark">04</span><p><strong>States with strong EV incentives saw 30%+ sales growth</strong>, a clear signal that policy is driving measurable adoption.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="proj-nextnav">
+  <div class="proj-nextnav-inner">
+    <a href="project-uber.html" class="nextnav-link">← Uber Trip Analysis</a>
+    <a href="project-linkedin.html" class="nextnav-link">Next: LinkedIn Job Market →</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="project.js"></script>
+<script>
+  buildChart3D(document.getElementById('chartStates'), [
+    { label: 'MH', value: 100 }, { label: 'KA', value: 92 }, { label: 'UP', value: 88 },
+    { label: 'DL', value: 60 }, { label: 'GJ', value: 52 }
+  ]);
+  buildDonut(document.getElementById('chartCategory'), [
+    { label: '2-Wheeler', value: 58, color: 'var(--proj-accent)' },
+    { label: '4-Wheeler', value: 34, color: 'var(--proj-secondary)' },
+    { label: 'Other', value: 8, color: 'var(--proj-accent-dim)' }
+  ]);
+  buildLineChart(document.getElementById('chartYear'), [
+    { label: '2019', value: 20 }, { label: '2020', value: 26 }, { label: '2021', value: 45 },
+    { label: '2022', value: 78 }, { label: '2023', value: 100 }
+  ]);
+  buildScatter(document.getElementById('chartIncentive'), [
+    { x: 2, y: 18 }, { x: 3, y: 22 }, { x: 5, y: 35 }, { x: 6, y: 41 },
+    { x: 8, y: 52 }, { x: 9, y: 58 }
+  ], { trend: true, labels: ['Low infra', '', '', 'Mid', '', 'High infra'] });
+</script>
+</body>
+</html>

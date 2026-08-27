@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uber Trip Analysis — Case Study | Aman Manderna</title>
+<meta name="description" content="EDA on 15,000+ Uber ride records using Python and Tableau, uncovering peak-hour demand and base-level ride concentration patterns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="project.css">
+<style>
+  :root{
+    --proj-accent: #f2f2f2; --proj-accent-dim: #9a9a9a; --proj-accent-light: #ffffff; --proj-accent-soft: rgba(242,242,242,0.1);
+    --proj-secondary: #6b6b6b; --proj-secondary-dim: #454545; --proj-secondary-light: #b8b8b8; --proj-secondary-soft: rgba(150,150,150,0.14);
+  }
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N0T9WGLBBM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N0T9WGLBBM');
+</script>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">AM<span class="logo-dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-ghost nav-cta">Resume</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="proj-hero">
+  <div class="section-inner">
+    <a href="index.html#projects" class="proj-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to projects
+    </a>
+    <p class="proj-eyebrow">Case study · Power BI &amp; Python</p>
+    <h1 class="proj-title">Uber Trip Analysis</h1>
+    <p class="proj-lede">
+      An interactive dashboard analyzing Uber trip data for January–February to uncover demand
+      patterns across time, weekdays, and dispatch bases — built to support operational and
+      driver-allocation planning.
+    </p>
+    <div class="proj-meta">
+      <span class="tag">Python</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">NumPy</span>
+      <span class="tag">Tableau</span>
+      <span class="tag">EDA</span>
+    </div>
+    <div class="proj-actions">
+      <a href="https://github.com/AmanManderna/Uber_Trip_Analysis" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub ↗</a>
+      <a href="https://github.com/AmanManderna/Uber_Trip_Analysis/blob/main/Uber-Jan-Feb-Cleaned.xlsx" target="_blank" rel="noopener" class="btn btn-outline">Full Dataset ↗</a>
+    </div>
+
+    <div class="proj-stats-strip">
+      <div class="pstat"><div class="pstat-num">15K+</div><div class="pstat-label">Ride records analyzed</div></div>
+      <div class="pstat"><div class="pstat-num">+40%</div><div class="pstat-label">Higher demand at peak</div></div>
+      <div class="pstat"><div class="pstat-num">2</div><div class="pstat-label">Months of trip data</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="proj-section">
+    <div class="proj-section-inner">
+      <p class="proj-eyebrow">The problem</p>
+      <h2 class="proj-h2">Matching drivers to demand isn't guesswork — it's a data problem.</h2>
+      <p class="proj-text">
+        Uber's dispatch bases need to know, ahead of time, when and where ride demand will spike
+        so they can position active vehicles accordingly. Without that visibility, bases either
+        over-supply during quiet hours or under-supply during rush — both cost money and hurt
+        rider experience.
+      </p>
+      <p class="proj-text">
+        This project analyzes <strong>trip counts and active vehicle activity across dispatch
+        bases</strong> for January and February to answer three questions: when do trips peak,
+        which bases carry the most load, and how efficiently is each base using its fleet.
+      </p>
+    </div>
+  </section>
+
+  <section class="proj-section proj-section-alt">
+    <div class="proj-section-inner">
+      <p class="proj-eyebrow">The dataset</p>
+      <h2 class="proj-h2">Uber-Jan-Feb-Cleaned.xlsx</h2>
+      <p class="proj-text">
+        Raw trip data was parsed, cleaned, and aggregated in Python — splitting timestamps into
+        date, weekday, and month fields, and validating trip/vehicle counts — before being fed
+        into Tableau for visualization.
+      </p>
+
+      <div class="dataset-card">
+        <div class="dataset-head">
+          <span>preview.csv</span>
+          <span class="badge">first 5 rows · illustrative</span>
+        </div>
+        <div class="dataset-table-wrap">
+          <table class="dataset-table">
+            <thead><tr><th>Date</th><th>Day</th><th>Weekday</th><th>Base</th><th>Trips</th><th>Active Vehicles</th></tr></thead>
+            <tbody>
+              <tr><td>1/1/2015</td><td>1</td><td>Thu</td><td>B02512</td><td>92</td><td>31</td></tr>
+              <tr><td>1/1/2015</td><td>1</td><td>Thu</td><td>B02598</td><td>2138</td><td>493</td></tr>
+              <tr><td>1/1/2015</td><td>1</td><td>Thu</td><td>B02617</td><td>1834</td><td>558</td></tr>
+              <tr><td>1/2/2015</td><td>2</td><td>Fri</td><td>B02512</td><td>112</td><td>36</td></tr>
+              <tr><td>1/2/2015</td><td>2</td><td>Fri</td><td>B02598</td><td>2202</td><td>510</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="dataset-note">Sample rows shown for preview — see the full cleaned file on GitHub for exact values.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="proj-section-inner wide">
+      <p class="proj-eyebrow">Visualizations</p>
+      <h2 class="proj-h2">What the dashboard shows</h2>
+
+      <div class="viz-grid">
+        <div class="viz-card">
+          <div class="viz-title">Total trips over time</div>
+          <div class="viz-sub">Daily trip volume, Jan → Feb</div>
+          <div class="linechart" id="chartHour"></div>
+        </div>
+
+        <div class="viz-card">
+          <div class="viz-title">Trips per dispatch base</div>
+          <div class="viz-sub">Total trips, Jan–Feb combined</div>
+          <div class="chart3d compact" id="chartBase"></div>
+        </div>
+
+        <div class="viz-card">
+          <div class="viz-title">Trips by weekday &amp; base</div>
+          <div class="viz-sub">Relative intensity heatmap</div>
+          <div class="heatmap" id="chartWeekday"></div>
+        </div>
+
+        <div class="viz-card">
+          <div class="viz-title">Avg trips per active vehicle</div>
+          <div class="viz-sub">Fleet efficiency across the week</div>
+          <div class="scatter" id="chartEfficiency"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section proj-section-alt">
+    <div class="proj-section-inner">
+      <p class="proj-eyebrow">Insights</p>
+      <h2 class="proj-h2">What the data revealed</h2>
+      <div class="insights-list">
+        <div class="insight-item"><span class="insight-mark">01</span><p><strong>Weekdays consistently outperform weekends</strong> in total trip volume, suggesting commute-driven demand rather than purely leisure travel.</p></div>
+        <div class="insight-item"><span class="insight-mark">02</span><p><strong>A small number of dispatch bases dominate</strong> total ride activity, meaning fleet resources are better spent concentrated rather than spread evenly.</p></div>
+        <div class="insight-item"><span class="insight-mark">03</span><p><strong>Trips per vehicle dip slightly on weekends</strong> — vehicles are on the road but less efficiently utilized than on weekdays.</p></div>
+        <div class="insight-item"><span class="insight-mark">04</span><p><strong>Overall trip volume grew from January into February</strong>, a trend worth tracking against seasonal or promotional factors.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="proj-nextnav">
+  <div class="proj-nextnav-inner">
+    <a href="index.html#projects" class="nextnav-link">← All projects</a>
+    <a href="project-ev.html" class="nextnav-link">Next: EV Sales by State →</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="project.js"></script>
+<script>
+  buildLineChart(document.getElementById('chartHour'), [
+    { label: 'Jan 1', value: 210 }, { label: 'Jan 8', value: 260 }, { label: 'Jan 15', value: 245 },
+    { label: 'Jan 22', value: 290 }, { label: 'Jan 29', value: 310 }, { label: 'Feb 5', value: 340 },
+    { label: 'Feb 12', value: 365 }, { label: 'Feb 19', value: 395 }
+  ]);
+  buildChart3D(document.getElementById('chartBase'), [
+    { label: 'B02512', value: 32 }, { label: 'B02598', value: 88 },
+    { label: 'B02617', value: 76 }, { label: 'B02682', value: 54 }, { label: 'B02764', value: 41 }
+  ], { cyan: true });
+  buildHeatmap(document.getElementById('chartWeekday'),
+    ['B02512', 'B02598', 'B02617', 'B02682'],
+    ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    [
+      [30, 34, 33, 38, 45, 28, 22],
+      [78, 82, 80, 88, 95, 60, 52],
+      [70, 74, 72, 79, 90, 55, 48],
+      [50, 52, 51, 58, 63, 40, 35]
+    ]
+  );
+  buildScatter(document.getElementById('chartEfficiency'), [
+    { x: 1, y: 4.3 }, { x: 2, y: 4.4 }, { x: 3, y: 4.2 }, { x: 4, y: 4.5 },
+    { x: 5, y: 4.6 }, { x: 6, y: 3.7 }, { x: 7, y: 3.5 }
+  ], { trend: true, labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] });
+</script>
+</body>
+</html>

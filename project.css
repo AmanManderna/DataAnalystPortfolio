@@ -1,0 +1,271 @@
+/* ==========================================================================
+   PROJECT / CASE STUDY PAGE STYLES
+   Builds on style.css tokens — include style.css first, then this file.
+   ========================================================================== */
+
+.proj-hero{
+  position: relative;
+  padding: 150px 0 70px;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 10%, var(--proj-accent-soft, rgba(245,185,66,0.06)), transparent 60%),
+    var(--bg);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.proj-back{
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted);
+  margin-bottom: 30px; transition: color 0.2s var(--ease);
+}
+.proj-back:hover{ color: var(--accent); }
+.proj-back svg{ width: 14px; height: 14px; }
+
+.proj-eyebrow{
+  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--proj-secondary, var(--cyan)); margin-bottom: 16px;
+}
+
+.proj-title{
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  line-height: 1.05; margin-bottom: 18px; max-width: 780px;
+}
+
+.proj-lede{
+  color: var(--text-muted); font-size: 1.1rem; max-width: 640px; margin-bottom: 30px;
+}
+
+.proj-meta{
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 34px;
+}
+.proj-meta .tag{
+  font-family: var(--font-mono); font-size: 0.78rem;
+  padding: 7px 14px; border-radius: 999px;
+  border: 1px solid var(--border-dim, var(--border));
+  color: var(--text-muted); background: var(--bg-alt);
+}
+
+.proj-actions{ display: flex; gap: 14px; flex-wrap: wrap; }
+
+.proj-stats-strip{
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px; margin-top: 48px; max-width: 800px;
+}
+.pstat{
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 18px 20px;
+}
+.pstat-num{ font-family: var(--font-mono); font-size: 1.6rem; font-weight: 600; color: var(--proj-accent, var(--accent)); }
+.pstat-label{ font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+
+/* ---- generic content section ---- */
+.proj-section{ padding: 90px 0; }
+.proj-section-alt{ background: var(--bg-alt); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+.proj-section-inner{ max-width: 900px; margin: 0 auto; padding: 0 32px; }
+.proj-section-inner.wide{ max-width: 1100px; }
+
+.proj-h2{ font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 20px; }
+.proj-text{ color: var(--text-muted); font-size: 1.02rem; margin-bottom: 16px; max-width: 720px; }
+.proj-text strong{ color: var(--text); }
+
+/* ---- dataset table ---- */
+.dataset-card{
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; margin-top: 28px;
+}
+.dataset-head{
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  padding: 16px 22px; border-bottom: 1px solid var(--border-soft);
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted);
+}
+.dataset-head .badge{
+  color: var(--proj-secondary, var(--cyan)); background: var(--proj-secondary-soft, var(--cyan-soft)); padding: 4px 10px; border-radius: 999px;
+  text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.68rem;
+}
+.dataset-table-wrap{ overflow-x: auto; }
+.dataset-table{ width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.82rem; min-width: 560px; }
+.dataset-table th{
+  text-align: left; padding: 12px 18px; color: var(--proj-accent, var(--accent));
+  background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+  white-space: nowrap; font-weight: 500;
+}
+.dataset-table td{
+  padding: 11px 18px; color: var(--text-muted); border-bottom: 1px solid var(--border-soft);
+  white-space: nowrap;
+}
+.dataset-table tr:last-child td{ border-bottom: none; }
+.dataset-note{
+  padding: 14px 22px; font-size: 0.82rem; color: var(--text-dim);
+  border-top: 1px solid var(--border-soft); background: var(--surface-2);
+}
+
+/* ---- visualization grid ---- */
+.viz-grid{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 40px; }
+.viz-grid.single{ grid-template-columns: 1fr; }
+.viz-card{
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 26px 26px 22px;
+}
+.viz-title{ font-size: 1rem; margin-bottom: 4px; }
+.viz-sub{ font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-dim); margin-bottom: 22px; }
+
+/* ==========================================================================
+   3D ISOMETRIC BAR CHART (CSS only, animates on scroll)
+   Uses --proj-accent / --proj-secondary set per-page; falls back to portfolio defaults.
+   ========================================================================== */
+.chart3d{
+  display: flex; align-items: stretch; gap: 22px;
+  height: 230px; padding: 30px 10px 0 26px; box-sizing: border-box;
+  perspective: 900px;
+}
+.chart3d.compact{ height: 200px; gap: 14px; }
+
+.bar3d-col{
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+  flex: 1; min-width: 0; height: 100%;
+}
+
+.bar3d{
+  position: relative;
+  width: 26px;
+  transform-style: preserve-3d;
+}
+
+.bar3d .b-front, .bar3d .b-side, .bar3d .b-top{
+  position: absolute;
+  background: var(--proj-accent, var(--accent));
+}
+.bar3d .b-front{
+  inset: 0;
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  transition: transform 0.9s var(--ease);
+}
+.bar3d .b-side{
+  top: 0; left: 100%; width: 9px; height: 100%;
+  background: var(--proj-accent-dim, var(--accent-dim));
+  transform-origin: top left;
+  transform: skewY(45deg) scaleY(0);
+  transition: transform 0.9s var(--ease);
+}
+.bar3d .b-top{
+  bottom: 100%; left: 0; width: 100%; height: 9px;
+  background: var(--proj-accent-light, #ffd88a);
+  transform-origin: bottom left;
+  transform: skewX(-45deg) translateX(-9px);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease) 0.5s;
+}
+
+.bar3d-col.cyan .b-front{ background: var(--proj-secondary, var(--cyan)); }
+.bar3d-col.cyan .b-side{ background: var(--proj-secondary-dim, #2e8f85); }
+.bar3d-col.cyan .b-top{ background: var(--proj-secondary-light, #9be9e0); }
+
+.chart3d.in .bar3d .b-front{ transform: scaleY(1); }
+.chart3d.in .bar3d .b-side{ transform: skewY(45deg) scaleY(1); }
+.chart3d.in .bar3d .b-top{ opacity: 1; }
+
+.bar3d-val{
+  position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+  margin-bottom: 6px; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 0.7rem; color: var(--text);
+  opacity: 0; transition: opacity 0.4s var(--ease) 0.9s;
+}
+.chart3d.in .bar3d-val{ opacity: 1; }
+.bar3d-label{ margin-top: 8px; font-family: var(--font-mono); font-size: 0.66rem; color: var(--text-dim); text-align: center; line-height: 1.3; }
+
+/* ==========================================================================
+   LINE / AREA CHART
+   ========================================================================== */
+.linechart{ height: 200px; display: flex; flex-direction: column; }
+.linechart-svg{ width: 100%; height: 160px; overflow: visible; }
+.linechart-area{ fill: var(--proj-accent, var(--accent)); opacity: 0; transition: opacity 1s var(--ease); }
+.linechart-line{ fill: none; stroke: var(--proj-accent, var(--accent)); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.linechart-dot{ fill: var(--bg); stroke: var(--proj-accent, var(--accent)); stroke-width: 2; opacity: 0; transition: opacity 0.4s var(--ease); }
+.linechart.in .linechart-area{ opacity: 0.16; }
+.linechart.in .linechart-dot{ opacity: 1; }
+.linechart-labels{ display: flex; justify-content: space-between; margin-top: 8px; font-family: var(--font-mono); font-size: 0.66rem; color: var(--text-dim); }
+
+/* ==========================================================================
+   DONUT CHART
+   ========================================================================== */
+.donut{ display: flex; align-items: center; gap: 26px; height: 200px; }
+.donut-svg{ width: 140px; height: 140px; flex-shrink: 0; }
+.donut-track{ fill: none; stroke: var(--border-soft); stroke-width: 14; }
+.donut-seg{ fill: none; stroke-width: 14; transition: stroke-dashoffset 1.1s var(--ease); }
+.donut-center-val{ font-family: var(--font-mono); font-size: 1.3rem; font-weight: 600; fill: var(--text); }
+.donut-center-label{ font-family: var(--font-mono); font-size: 0.6rem; fill: var(--text-dim); }
+.donut-legend{ display: flex; flex-direction: column; gap: 10px; }
+.donut-legend-item{ display: flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); }
+.donut-dot{ width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.donut-legend-val{ color: var(--text); margin-left: auto; padding-left: 12px; }
+
+/* ==========================================================================
+   SCATTER CHART
+   ========================================================================== */
+.scatter{ height: 200px; }
+.scatter-svg{ width: 100%; height: 165px; overflow: visible; }
+.scatter-grid line{ stroke: var(--border-soft); stroke-width: 1; }
+.scatter-trend{ fill: none; stroke: var(--proj-secondary, var(--cyan)); stroke-width: 1.5; stroke-dasharray: 4 4; opacity: 0; transition: opacity 1s var(--ease) 0.3s; }
+.scatter.in .scatter-trend{ opacity: 0.7; }
+.scatter-dot{ fill: var(--proj-accent, var(--accent)); transform-origin: center; transform: scale(0); transition: transform 0.5s var(--ease); }
+.scatter.in .scatter-dot{ transform: scale(1); }
+.scatter-labels{ display: flex; justify-content: space-between; margin-top: 4px; font-family: var(--font-mono); font-size: 0.66rem; color: var(--text-dim); }
+
+/* ==========================================================================
+   HEATMAP
+   ========================================================================== */
+.heatmap{ height: 200px; display: flex; flex-direction: column; }
+.heatmap-grid{ display: grid; gap: 5px; flex: 1; }
+.heatmap-cell{
+  position: relative; border-radius: 4px; background: var(--proj-accent, var(--accent));
+  opacity: 0; transform: scale(0.6); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 20px;
+}
+.heatmap.in .heatmap-cell{ opacity: var(--cell-op, 0.3); transform: scale(1); }
+.heatmap-rowlabel{
+  display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-dim);
+  padding-right: 6px; justify-content: flex-end;
+}
+.heatmap-collabels{ display: grid; gap: 5px; margin-top: 8px; }
+.heatmap-collabel{ text-align: center; font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-dim); }
+
+/* ---- insights list ---- */
+.insights-list{ display: flex; flex-direction: column; gap: 14px; margin-top: 26px; }
+.insight-item{
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px 20px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.insight-mark{
+  font-family: var(--font-mono); color: var(--proj-accent, var(--accent)); font-size: 0.85rem;
+  background: var(--proj-accent-soft, var(--accent-soft)); width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.insight-item p{ color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+.insight-item strong{ color: var(--text); }
+
+/* ---- next project nav ---- */
+.proj-nextnav{
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+  padding: 60px 0; text-align: center;
+}
+.proj-nextnav-inner{
+  max-width: 900px; margin: 0 auto; padding: 0 32px;
+  display: flex; justify-content: space-between; align-items: center; gap: 20px; width: 100%;
+}
+.nextnav-link{
+  font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);
+  display: flex; align-items: center; gap: 8px; transition: color 0.2s var(--ease);
+}
+.proj-actions .btn-primary{ background: var(--proj-accent, var(--accent)); color: var(--proj-accent-text, #0a0d13); }
+.proj-actions .btn-outline{ border-color: var(--border); color: var(--text); }
+.proj-actions .btn-outline:hover{ border-color: var(--proj-accent, var(--accent)); color: var(--proj-accent, var(--accent)); }
+.nextnav-link:hover{ color: var(--proj-accent, var(--accent)); }
+
+@media (max-width: 720px){
+  .viz-grid{ grid-template-columns: 1fr; }
+  .proj-nextnav-inner{ flex-direction: column; }
+  .chart3d{ padding-left: 6px; gap: 10px; }
+  .bar3d{ width: 18px; }
+}

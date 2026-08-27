@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Job Market Analytics — Case Study | Aman Manderna</title>
+<meta name="description" content="Analysis of 5,000+ LinkedIn job postings to surface skill demand, salary trends, and hiring hotspots across 10+ industries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="project.css">
+<style>
+  :root{
+    --proj-accent: #0A66C2; --proj-accent-dim: #004182; --proj-accent-light: #70B5F9; --proj-accent-soft: rgba(10,102,194,0.16);
+    --proj-secondary: #ffffff; --proj-secondary-dim: #9aa4b2; --proj-secondary-light: #f3f6f8; --proj-secondary-soft: rgba(255,255,255,0.08);
+    --proj-accent-text: #ffffff;
+  }
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N0T9WGLBBM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-N0T9WGLBBM');
+</script>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">AM<span class="logo-dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-ghost nav-cta">Resume</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="proj-hero">
+  <div class="section-inner">
+    <a href="index.html#projects" class="proj-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to projects
+    </a>
+    <p class="proj-eyebrow">Case study · Power BI &amp; Python</p>
+    <h1 class="proj-title">LinkedIn Job Market Analytics</h1>
+    <p class="proj-lede">
+      Scraped and analyzed thousands of LinkedIn job postings to uncover which skills are
+      actually in demand, how salaries vary by role and location, and where hiring is
+      concentrated — built as a drill-down tool for job seekers.
+    </p>
+    <div class="proj-meta">
+      <span class="tag">Python</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">NumPy</span>
+      <span class="tag">Power BI</span>
+      <span class="tag">Web Scraping</span>
+    </div>
+    <div class="proj-actions">
+      <a href="https://github.com/AmanManderna" target="_blank" rel="noopener" class="btn btn-outline">GitHub Profile ↗</a>
+    </div>
+
+    <div class="proj-stats-strip">
+      <div class="pstat"><div class="pstat-num">5K+</div><div class="pstat-label">Job postings analyzed</div></div>
+      <div class="pstat"><div class="pstat-num">10+</div><div class="pstat-label">Industries covered</div></div>
+      <div class="pstat"><div class="pstat-num">5+</div><div class="pstat-label">Interactive dashboard visuals</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="proj-section">
+    <div class="proj-section-inner">
+      <p class="proj-eyebrow">The problem</p>
+      <h2 class="proj-h2">Job seekers guess at what employers want. This project replaces the guess.</h2>
+      <p class="proj-text">
+        Most job seekers rely on scattered advice about "hot skills" without any real data behind
+        it. Meanwhile, thousands of postings on LinkedIn contain exactly the signal needed —
+        which skills recur, what salaries roles actually pay, and which cities and industries
+        are hiring the most right now.
+      </p>
+      <p class="proj-text">
+        This project scrapes and analyzes LinkedIn job postings to build a
+        <strong>KPI-driven Power BI dashboard</strong> that lets a job seeker drill down by role,
+        location, and skill — turning noisy job-market chatter into a concrete, filterable view.
+      </p>
+    </div>
+  </section>
+
+  <section class="proj-section proj-section-alt">
+    <div class="proj-section-inner">
+      <p class="proj-eyebrow">The dataset</p>
+      <h2 class="proj-h2">Scraped job postings dataset</h2>
+      <p class="proj-text">
+        Postings were collected across 10+ industries and cleaned in Python (Pandas, NumPy)
+        into a structured table of role, company, location, industry, required skills, and
+        posted salary range.
+      </p>
+
+      <div class="dataset-card">
+        <div class="dataset-head">
+          <span>preview.csv</span>
+          <span class="badge">first 5 rows · illustrative</span>
+        </div>
+        <div class="dataset-table-wrap">
+          <table class="dataset-table">
+            <thead><tr><th>Job_Title</th><th>Location</th><th>Industry</th><th>Top_Skill</th><th>Salary_Range (₹LPA)</th></tr></thead>
+            <tbody>
+              <tr><td>Data Analyst</td><td>Bengaluru</td><td>IT Services</td><td>SQL</td><td>6–9</td></tr>
+              <tr><td>Business Analyst</td><td>Gurugram</td><td>Fintech</td><td>Power BI</td><td>8–12</td></tr>
+              <tr><td>Data Scientist</td><td>Hyderabad</td><td>E-commerce</td><td>Python</td><td>12–18</td></tr>
+              <tr><td>BI Developer</td><td>Mumbai</td><td>Banking</td><td>DAX</td><td>7–11</td></tr>
+              <tr><td>Data Analyst</td><td>Pune</td><td>Consulting</td><td>Excel</td><td>5–8</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="dataset-note">Sample rows shown for preview to illustrate schema — real posting data available on request.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="proj-section-inner wide">
+      <p class="proj-eyebrow">Visualizations</p>
+      <h2 class="proj-h2">What the dashboard shows</h2>
+
+      <div class="viz-grid">
+        <div class="viz-card">
+          <div class="viz-title">Top skills in demand</div>
+          <div class="viz-sub">Frequency across all postings</div>
+          <div class="chart3d compact" id="chartSkills"></div>
+        </div>
+
+        <div class="viz-card">
+          <div class="viz-title">Postings by hiring hub</div>
+          <div class="viz-sub">Volume by city</div>
+          <div class="scatter" id="chartLocations"></div>
+        </div>
+
+        <div class="viz-card">
+          <div class="viz-title">Salary by seniority</div>
+          <div class="viz-sub">Median LPA, analyst → data scientist</div>
+          <div class="linechart" id="chartSalary"></div>
+        </div>
+
+        <div class="viz-card">
+          <div class="viz-title">Postings by industry</div>
+          <div class="viz-sub">Share across 10+ industries</div>
+          <div class="donut" id="chartIndustry"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section proj-section-alt">
+    <div class="proj-section-inner">
+      <p class="proj-eyebrow">Insights</p>
+      <h2 class="proj-h2">What the data revealed</h2>
+      <div class="insights-list">
+        <div class="insight-item"><span class="insight-mark">01</span><p><strong>SQL and Python are the two most frequently requested skills</strong> across analyst and BI roles, ahead of any single BI tool.</p></div>
+        <div class="insight-item"><span class="insight-mark">02</span><p><strong>Bengaluru and Gurugram lead hiring volume</strong>, consistent with IT services and fintech hubs concentrating in those cities.</p></div>
+        <div class="insight-item"><span class="insight-mark">03</span><p><strong>Salary ranges widen sharply moving from analyst to scientist roles</strong>, reflecting the added value of modeling skills.</p></div>
+        <div class="insight-item"><span class="insight-mark">04</span><p><strong>IT services and fintech post the most openings</strong>, together accounting for a large share of the analyzed postings.</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="proj-nextnav">
+  <div class="proj-nextnav-inner">
+    <a href="project-ev.html" class="nextnav-link">← EV Sales by State</a>
+    <a href="index.html#contact" class="nextnav-link">Get in touch →</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="project.js"></script>
+<script>
+  buildChart3D(document.getElementById('chartSkills'), [
+    { label: 'SQL', value: 100 }, { label: 'Python', value: 92 }, { label: 'Power BI', value: 76 },
+    { label: 'Excel', value: 64 }, { label: 'Tableau', value: 44 }
+  ]);
+  buildScatter(document.getElementById('chartLocations'), [
+    { x: 1, y: 100 }, { x: 2, y: 86 }, { x: 3, y: 70 }, { x: 4, y: 58 }, { x: 5, y: 42 }
+  ], { labels: ['Bengaluru', 'Gurugram', 'Hyderabad', 'Mumbai', 'Pune'] });
+  buildLineChart(document.getElementById('chartSalary'), [
+    { label: 'Analyst', value: 7 }, { label: 'Sr Analyst', value: 10 },
+    { label: 'BI Dev', value: 12 }, { label: 'Data Sci', value: 18 }
+  ]);
+  buildDonut(document.getElementById('chartIndustry'), [
+    { label: 'IT Services', value: 32, color: 'var(--proj-accent)' },
+    { label: 'Fintech', value: 22, color: 'var(--proj-secondary)' },
+    { label: 'E-commerce', value: 18, color: 'var(--proj-accent-light)' },
+    { label: 'Other', value: 28, color: 'var(--proj-accent-dim)' }
+  ]);
+</script>
+</body>
+</html>
