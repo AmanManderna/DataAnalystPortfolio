@@ -281,7 +281,7 @@ h1, h2, h3{ font-family: var(--font-display); font-weight: 600; letter-spacing: 
     radial-gradient(ellipse 60% 50% at 15% 20%, rgba(245,185,66,0.10), transparent 60%),
     radial-gradient(ellipse 55% 45% at 85% 75%, rgba(79,209,197,0.10), transparent 60%);
 }
-.particles{ z-index: 1; }
+.particles{ position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .hero-inner{ z-index: 2; }
 .scroll-cue{ z-index: 2; }
 
