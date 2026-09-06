@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+  (function(){
+    try{
+      var t = localStorage.getItem('aman-theme');
+      if(!t){ t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
+      if(t === 'light'){ document.documentElement.setAttribute('data-theme', 'light'); }
+    }catch(e){}
+  })();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LinkedIn Job Market Analytics — Case Study | Aman Manderna</title>
@@ -39,11 +48,21 @@
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
     <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-ghost nav-cta">Resume</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle day/night mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+    </button>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
 <header class="proj-hero">
+  <svg viewBox="0 0 56 56" class="proj-hero-icon" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="10" y="20" width="36" height="24" rx="3"/>
+    <path d="M21 20 L21 15 Q21 12 24 12 L32 12 Q35 12 35 15 L35 20"/>
+    <path d="M10 30 L46 30"/>
+    <circle cx="28" cy="30" r="3" fill="currentColor" stroke="none"/>
+  </svg>
   <div class="section-inner">
     <a href="index.html#projects" class="proj-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>

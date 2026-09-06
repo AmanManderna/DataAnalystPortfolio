@@ -6,6 +6,21 @@
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.querySelector('.nav-links');
 
+  /* ---------------- THEME TOGGLE (day/night) ---------------- */
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        try { localStorage.setItem('aman-theme', 'dark'); } catch (e) {}
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        try { localStorage.setItem('aman-theme', 'light'); } catch (e) {}
+      }
+    });
+  }
+
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });

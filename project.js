@@ -1,6 +1,6 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const REVEAL_DELAY = reduceMotion ? 0 : 2000;
+  const REVEAL_DELAY = reduceMotion ? 0 : 1000;
 
   /* ---------------- NAV ---------------- */
   const nav = document.getElementById('nav');

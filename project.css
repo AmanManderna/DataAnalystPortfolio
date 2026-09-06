@@ -10,7 +10,14 @@
     radial-gradient(ellipse 60% 50% at 20% 10%, var(--proj-accent-soft, rgba(245,185,66,0.06)), transparent 60%),
     var(--bg);
   border-bottom: 1px solid var(--border-soft);
+  overflow: hidden;
 }
+.proj-hero-icon{
+  position: absolute; top: 50%; right: -40px; transform: translateY(-50%);
+  width: 340px; height: 340px; color: var(--proj-accent, var(--accent));
+  opacity: 0.06; pointer-events: none;
+}
+@media (max-width: 900px){ .proj-hero-icon{ display: none; } }
 
 .proj-back{
   display: inline-flex; align-items: center; gap: 8px;
