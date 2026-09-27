@@ -6,14 +6,27 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-  /* ---------------- THEME (day paper / night ink) ---------------- */
+   /* ---------------- THEME (day paper / night ink) ---------------- */
+  // One saved setting drives every page. These listeners keep pages in sync when
+  // you come back with the Back button, or have the site open in several tabs.
+  const THEME_KEY = 'aman-theme-v2';
+  const applySavedTheme = () => {
+    let t = null;
+    try { t = localStorage.getItem(THEME_KEY); } catch (e) {}
+    if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+  };
+  window.addEventListener('pageshow', applySavedTheme);                                   // Back / Forward
+  window.addEventListener('storage', e => { if (e.key === THEME_KEY) applySavedTheme(); }); // other tabs
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) applySavedTheme(); });
+
   const themeToggle = $('#themeToggle');
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
       const root = document.documentElement;
       const dark = root.getAttribute('data-theme') === 'dark';
       if (dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', 'dark');
-       try { localStorage.setItem('aman-theme-v2', dark ? 'light' : 'dark'); } catch (e) {}
+      try { localStorage.setItem(THEME_KEY, dark ? 'light' : 'dark'); } catch (e) {}
     });
   }
 
