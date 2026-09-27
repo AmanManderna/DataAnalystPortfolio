@@ -74,7 +74,7 @@ window.CERTIFICATES = {
      The five below are starter entries for the areas you mentioned —
      rename them to match the exact certificate titles and add the rest.
      ------------------------------------------------------------------------ */
-  corporate: {
+/*  corporate: {
     title: 'Organisation & Corporate',
     subtitle: 'Mandatory and professional certifications completed at GlobalLogic.',
     items: [
@@ -126,3 +126,4 @@ window.CERTIFICATES = {
     ]
   }
 };
+*/
