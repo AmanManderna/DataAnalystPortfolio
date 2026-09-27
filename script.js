@@ -13,7 +13,7 @@
       const root = document.documentElement;
       const dark = root.getAttribute('data-theme') === 'dark';
       if (dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', 'dark');
-      try { localStorage.setItem('aman-theme', dark ? 'light' : 'dark'); } catch (e) {}
+       try { localStorage.setItem('aman-theme-v2', dark ? 'light' : 'dark'); } catch (e) {}
     });
   }
 
