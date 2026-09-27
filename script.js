@@ -259,8 +259,8 @@
       return [rect, (v / max) * 120, i];
     });
     const grow = () => rects.forEach(([rect, h, i]) => {
-      rect.style.transition = reduceMotion ? 'none' : `height .9s cubic-bezier(.34,1.56,.64,1) ${i * 0.04}s, y .9s cubic-bezier(.34,1.56,.64,1) ${i * 0.04}s`;
-      rect.setAttribute('y', 130 - h);
+       const d = (i * 0.2 / rects.length).toFixed(3); // whole chart done in 0.75s
+      rect.style.transition = reduceMotion ? 'none' : `height .55s cubic-bezier(.34,1.56,.64,1) ${d}s, y .55s cubic-bezier(.34,1.56,.64,1) ${d}s`;
       rect.setAttribute('height', h);
     });
     const io = new IntersectionObserver(entries => entries.forEach(e => {
