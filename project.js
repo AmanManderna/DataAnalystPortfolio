@@ -1,6 +1,7 @@
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const REVEAL_DELAY = reduceMotion ? 0 : 1000;
+  const REVEAL_DELAY = 0;          // charts start as soon as they scroll into view
+  const CHART_TIME = 0.75;         // every chart finishes drawing within 0.75s
 
   /* Nav, theme toggle and scroll progress are handled by script.js (loaded first). */
 
@@ -116,7 +117,7 @@
       const len = line.getTotalLength();
       line.style.strokeDasharray = len;
       line.style.strokeDashoffset = len;
-      line.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.16,.84,.44,1)';
+     line.style.transition = `stroke-dashoffset ${CHART_TIME}s cubic-bezier(.16,.84,.44,1)`;
     }
 
     onScrollReveal(container, () => {
@@ -189,7 +190,7 @@
     container.appendChild(legend);
 
     onScrollReveal(container, () => {
-      segEls.forEach(c => { c.style.transition = 'stroke-dashoffset 1.1s cubic-bezier(.16,.84,.44,1)'; c.style.strokeDashoffset = c.dataset.targetOffset; });
+     segEls.forEach(c => { c.style.transition = `stroke-dashoffset ${CHART_TIME}s cubic-bezier(.16,.84,.44,1)`; c.style.strokeDashoffset = c.dataset.targetOffset; });
     });
   };
 
@@ -230,7 +231,7 @@
       const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       dot.setAttribute('cx', toX(p.x)); dot.setAttribute('cy', toY(p.y)); dot.setAttribute('r', 6);
       dot.classList.add('scatter-dot');
-      dot.style.transitionDelay = (i * 0.05) + 's';
+      dot.style.transitionDelay = (i * (0.3 / points.length)).toFixed(3) + 's';
       svg.appendChild(dot);
     });
 
@@ -268,7 +269,7 @@
         cell.className = 'heatmap-cell';
         const intensity = matrix[r][ci] / max;
         cell.style.setProperty('--cell-op', (0.18 + intensity * 0.82).toFixed(2));
-        cell.style.transitionDelay = ((r * cols.length + ci) * 0.03) + 's';
+        cell.style.transitionDelay = ((r * cols.length + ci) * (0.35 / (rows.length * cols.length))).toFixed(3) + 's';
         grid.appendChild(cell);
       });
     });
