@@ -3,11 +3,7 @@
 <head>
 <script>
   (function(){
-    try{
-      var t = localStorage.getItem('aman-theme');
-      if(!t){ t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
-      if(t === 'light'){ document.documentElement.setAttribute('data-theme', 'light'); }
-    }catch(e){}
+    try{ if(localStorage.getItem('aman-theme') === 'dark'){ document.documentElement.setAttribute('data-theme', 'dark'); } }catch(e){}
   })();
 </script>
 
@@ -26,13 +22,19 @@
 <meta name="description" content="EDA on 15,000+ Uber ride records using Python and Tableau, uncovering peak-hour demand and base-level ride concentration patterns.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Caveat:wght@500;600;700&family=Geist+Mono:wght@400..600&family=Geist:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="project.css">
 <style>
   :root{
-    --proj-accent: #f2f2f2; --proj-accent-dim: #9a9a9a; --proj-accent-light: #ffffff; --proj-accent-soft: rgba(242,242,242,0.1);
-    --proj-secondary: #6b6b6b; --proj-secondary-dim: #454545; --proj-secondary-light: #b8b8b8; --proj-secondary-soft: rgba(150,150,150,0.14);
+    --proj-accent: #1C1A16; --proj-accent-dim: #57524A; --proj-accent-light: #8A8274; --proj-accent-soft: rgba(28,26,22,0.08);
+    --proj-secondary: #8A8274; --proj-secondary-dim: #57524A; --proj-secondary-light: #B8AE9C; --proj-secondary-soft: rgba(138,130,116,0.16);
+    --proj-accent-text: #F7F2E8;
+  }
+  [data-theme="dark"]{
+    --proj-accent: #EFE9DE; --proj-accent-dim: #9A9388; --proj-accent-light: #FFFFFF; --proj-accent-soft: rgba(239,233,222,0.1);
+    --proj-secondary: #8A8274; --proj-secondary-dim: #57524A; --proj-secondary-light: #B8AE9C; --proj-secondary-soft: rgba(138,130,116,0.18);
+    --proj-accent-text: #151412;
   }
 </style>
 
@@ -46,17 +48,21 @@
 </head>
 <body>
 
+<div class="progress" id="progress"></div>
+<div class="grain" aria-hidden="true"></div>
+
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo">AM<span class="logo-dot">.</span></a>
+    <a href="index.html" class="logo">Aman<span class="logo-dot">.</span></a>
     <ul class="nav-links">
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#skills">Skills</a></li>
       <li><a href="index.html#experience">Experience</a></li>
       <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#certifications">Certificates</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-ghost nav-cta">Resume</a>
+    <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-ghost nav-cta">Résumé ↓</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle day/night mode">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>

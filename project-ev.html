@@ -3,11 +3,7 @@
 <head>
 <script>
   (function(){
-    try{
-      var t = localStorage.getItem('aman-theme');
-      if(!t){ t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
-      if(t === 'light'){ document.documentElement.setAttribute('data-theme', 'light'); }
-    }catch(e){}
+    try{ if(localStorage.getItem('aman-theme') === 'dark'){ document.documentElement.setAttribute('data-theme', 'dark'); } }catch(e){}
   })();
 </script>
 
@@ -26,13 +22,19 @@
 <meta name="description" content="State-wise EV sales analysis across India (2014-2023), uncovering regional adoption disparities and growth drivers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Caveat:wght@500;600;700&family=Geist+Mono:wght@400..600&family=Geist:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="project.css">
 <style>
   :root{
-    --proj-accent: #22c55e; --proj-accent-dim: #15803d; --proj-accent-light: #86efac; --proj-accent-soft: rgba(34,197,94,0.14);
-    --proj-secondary: #38bdf8; --proj-secondary-dim: #0369a1; --proj-secondary-light: #a5e6ff; --proj-secondary-soft: rgba(56,189,248,0.14);
+    --proj-accent: #15803D; --proj-accent-dim: #0F5C2C; --proj-accent-light: #4ADE80; --proj-accent-soft: rgba(21,128,61,0.12);
+    --proj-secondary: #0369A1; --proj-secondary-dim: #024B73; --proj-secondary-light: #7DD3FC; --proj-secondary-soft: rgba(3,105,161,0.12);
+    --proj-accent-text: #FFFFFF;
+  }
+  [data-theme="dark"]{
+    --proj-accent: #22C55E; --proj-accent-dim: #15803D; --proj-accent-light: #86EFAC; --proj-accent-soft: rgba(34,197,94,0.14);
+    --proj-secondary: #38BDF8; --proj-secondary-dim: #0369A1; --proj-secondary-light: #A5E6FF; --proj-secondary-soft: rgba(56,189,248,0.14);
+    --proj-accent-text: #0E0D0B;
   }
 </style>
 
@@ -46,17 +48,21 @@
 </head>
 <body>
 
+<div class="progress" id="progress"></div>
+<div class="grain" aria-hidden="true"></div>
+
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="logo">AM<span class="logo-dot">.</span></a>
+    <a href="index.html" class="logo">Aman<span class="logo-dot">.</span></a>
     <ul class="nav-links">
       <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#skills">Skills</a></li>
       <li><a href="index.html#experience">Experience</a></li>
       <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#certifications">Certificates</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
-    <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-ghost nav-cta">Resume</a>
+    <a href="assets/Aman_Manderna_Resume.pdf" download class="btn btn-ghost nav-cta">Résumé ↓</a>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle day/night mode">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>

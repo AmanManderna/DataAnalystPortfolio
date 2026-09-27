@@ -1,246 +1,274 @@
+/* Shared site script — used by index.html and the case-study pages.
+   Every block checks that its elements exist, so it's safe on any page. */
 (() => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover = window.matchMedia('(hover: hover)').matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-  /* ---------------- NAV ---------------- */
-  const nav = document.getElementById('nav');
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.querySelector('.nav-links');
-
-  /* ---------------- THEME TOGGLE (day/night) ---------------- */
-  const themeToggle = document.getElementById('themeToggle');
+  /* ---------------- THEME (day paper / night ink) ---------------- */
+  const themeToggle = $('#themeToggle');
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      if (isLight) {
-        document.documentElement.removeAttribute('data-theme');
-        try { localStorage.setItem('aman-theme', 'dark'); } catch (e) {}
-      } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        try { localStorage.setItem('aman-theme', 'light'); } catch (e) {}
-      }
+      const root = document.documentElement;
+      const dark = root.getAttribute('data-theme') === 'dark';
+      if (dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', 'dark');
+      try { localStorage.setItem('aman-theme', dark ? 'light' : 'dark'); } catch (e) {}
     });
   }
 
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+  /* ---------------- NAV ---------------- */
+  const nav = $('#nav');
+  const navToggle = $('#navToggle');
+  const navLinks = $('.nav-links');
+  const progress = $('#progress');
 
-  if (navToggle) {
+  const onScroll = () => {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+    if (progress) {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       navLinks.classList.toggle('open');
       navToggle.classList.toggle('active');
     });
+    $$('.nav-links a').forEach(a => a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('active');
+    }));
   }
 
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  // scroll-spy: underline the nav link for the section in view
+  const spyLinks = $$('.nav-links a[href^="#"]');
+  if (spyLinks.length) {
+    const byId = new Map(spyLinks.map(a => [a.getAttribute('href').slice(1), a]));
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        spyLinks.forEach(a => a.classList.remove('active'));
+        const link = byId.get(e.target.id);
+        if (link) link.classList.add('active');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    byId.forEach((_, id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
+  }
+
+  /* ---------------- HERO: draggable stickers + photo tilt ---------------- */
+  const stage = $('#photoStage');
+  const polaroid = $('#polaroid');
+  let dragging = false;
+
+  $$('[data-drag]').forEach(el => {
+    let startX, startY, baseX = 0, baseY = 0;
+    el.addEventListener('pointerdown', e => {
+      dragging = true;
+      el.setPointerCapture(e.pointerId);
+      el.classList.add('dragging');
+      startX = e.clientX; startY = e.clientY;
+    });
+    el.addEventListener('pointermove', e => {
+      if (!el.classList.contains('dragging')) return;
+      const dx = baseX + e.clientX - startX;
+      const dy = baseY + e.clientY - startY;
+      el.style.translate = `${dx}px ${dy}px`;
+    });
+    const end = e => {
+      if (!el.classList.contains('dragging')) return;
+      baseX += e.clientX - startX; baseY += e.clientY - startY;
+      el.classList.remove('dragging');
+      dragging = false;
+    };
+    el.addEventListener('pointerup', end);
+    el.addEventListener('pointercancel', end);
   });
 
-  /* ---------------- COUNTER ANIMATION ---------------- */
+  if (stage && polaroid && canHover && !reduceMotion) {
+    stage.addEventListener('mousemove', e => {
+      if (dragging) return;
+      const r = stage.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      polaroid.style.transform = `rotate(${2.5 - x * 4}deg) rotateY(${x * 10}deg) rotateX(${-y * 8}deg)`;
+    });
+    stage.addEventListener('mouseleave', () => { polaroid.style.transform = ''; });
+  }
+
+  /* ---------------- IMPACT METRICS: count-up ---------------- */
   function animateCount(el) {
     const target = parseFloat(el.dataset.count);
     const suffix = el.dataset.suffix || '';
     const duration = reduceMotion ? 1 : 1400;
     const start = performance.now();
-
-    function tick(now) {
+    (function tick(now) {
       const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      const val = Math.round(target * eased);
-      el.textContent = val + suffix;
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
       if (p < 1) requestAnimationFrame(tick);
+    })(start);
+  }
+  const dashCard = $('#dashCard');
+  if (dashCard) {
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { $$('.stat-num', e.target).forEach(animateCount); io.unobserve(e.target); }
+    }), { threshold: 0.4 });
+    io.observe(dashCard);
+  }
+
+  // chart crosshair: follows the line as you move across it
+  const chartBox = $('#chartBox'), chartLine = $('#chartLine');
+  if (chartBox && chartLine) {
+    const pts = chartLine.getAttribute('points').trim().split(/\s+/).map(p => p.split(',').map(Number));
+    const cross = $('#chartCross'), dot = $('#chartDot');
+    const move = clientX => {
+      const r = chartBox.getBoundingClientRect();
+      const fx = Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+      const vx = fx * 320;
+      let i = pts.findIndex(p => p[0] >= vx); if (i <= 0) i = 1;
+      const [x0, y0] = pts[i - 1], [x1, y1] = pts[i];
+      const vy = y0 + (y1 - y0) * ((vx - x0) / (x1 - x0 || 1));
+      cross.style.left = `${fx * 100}%`;
+      dot.style.left = `${fx * 100}%`;
+      dot.style.top = `${(vy / 90) * 100}%`;
+    };
+    chartBox.addEventListener('mousemove', e => move(e.clientX));
+    chartBox.addEventListener('touchmove', e => move(e.touches[0].clientX), { passive: true });
+  }
+
+  /* ---------------- SKILLS: query console ---------------- */
+  const consoleEl = $('#console');
+  if (consoleEl) {
+    const queries = [
+      'SELECT tool, used_for FROM aman.toolkit ORDER BY is_primary DESC;',
+      'SELECT concept FROM aman.core_concepts;',
+      'SELECT strength FROM aman.strengths;',
+      'SELECT skill FROM aman.working_with_others;',
+    ];
+    const codeEl = $('#queryText');
+    const status = $('#queryStatus');
+    const tabs = $$('.console-tab', consoleEl);
+    const panels = $$('.result-panel', consoleEl);
+    let current = 0, token = 0;
+
+    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const highlight = q => esc(q)
+      .replace(/\b(aman\.\w+)/g, '<span class="tb">$1</span>')
+      .replace(/\b(SELECT|FROM|ORDER BY|WHERE|DESC|ASC)\b/g, '<span class="kw">$1</span>');
+
+    async function run(i) {
+      const my = ++token;
+      current = i;
+      tabs.forEach((t, k) => t.setAttribute('aria-selected', String(k === i)));
+      panels.forEach(p => p.classList.remove('active'));
+      status.textContent = 'running…';
+
+      const q = queries[i];
+      if (!reduceMotion) {
+        codeEl.innerHTML = '<span class="caret"></span>';
+        for (let c = 1; c <= q.length; c++) {
+          if (my !== token) return;
+          codeEl.innerHTML = esc(q.slice(0, c)) + '<span class="caret"></span>';
+          await new Promise(r => setTimeout(r, 14));
+        }
+        await new Promise(r => setTimeout(r, 180));
+        if (my !== token) return;
+      }
+      codeEl.innerHTML = highlight(q);
+
+      const panel = panels[i];
+      panel.classList.add('active');
+      const rows = $$('tbody tr', panel);
+      rows.forEach((row, k) => {
+        row.classList.remove('row-in');
+        void row.offsetWidth;
+        row.style.animationDelay = `${k * 45}ms`;
+        row.classList.add('row-in');
+      });
+      const ms = (Math.random() * 0.03 + 0.01).toFixed(3);
+      status.innerHTML = `<span class="ok">✓</span> ${rows.length} rows returned in ${ms}s`;
     }
-    requestAnimationFrame(tick);
+
+    tabs.forEach((t, i) => t.addEventListener('click', () => run(i)));
+    $('#runQuery').addEventListener('click', () => run(current));
+    codeEl.innerHTML = highlight(queries[0]);
+
+    // play the first query once when the console scrolls into view
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { run(0); io.disconnect(); }
+    }), { threshold: 0.35 });
+    io.observe(consoleEl);
   }
 
-  const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.stat-num').forEach(animateCount);
-        statObserver.unobserve(entry.target);
+  /* ---------------- CERTIFICATE COUNTS on the folders ---------------- */
+  if (window.CERTIFICATES) {
+    $$('[data-cert-count]').forEach(el => {
+      const set = window.CERTIFICATES[el.dataset.certCount];
+      if (set) el.textContent = set.items.length;
+    });
+  }
+
+  /* ---------------- COPY EMAIL ---------------- */
+  const copyBtn = $('#copyEmail');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyBtn.dataset.email);
+        copyBtn.textContent = 'Copied ✓';
+        copyBtn.classList.add('copied');
+        setTimeout(() => { copyBtn.textContent = 'Copy email'; copyBtn.classList.remove('copied'); }, 1800);
+      } catch (e) {
+        window.location.href = 'mailto:' + copyBtn.dataset.email;
       }
     });
-  }, { threshold: 0.4 });
-
-  const dashCard = document.getElementById('dashCard');
-  if (dashCard) statObserver.observe(dashCard);
-
-  /* ---------------- DASHBOARD TILT ---------------- */
-  if (dashCard && !reduceMotion && window.matchMedia('(hover: hover)').matches) {
-    const heroRight = document.querySelector('.hero-right');
-    heroRight.addEventListener('mousemove', (e) => {
-      const rect = dashCard.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      dashCard.style.transform = `rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
-    });
-    heroRight.addEventListener('mouseleave', () => {
-      dashCard.style.transform = 'rotateY(0deg) rotateX(0deg)';
-    });
   }
-
-  /* ---------------- TERMINAL TYPING ---------------- */
-  const terminalBody = document.getElementById('terminalBody');
-  const lines = [
-    { prompt: '> whoami', out: 'Aman Manderna — Data Analyst' },
-    { prompt: '> focus', out: 'SQL · Python · Power BI · Excel · Tableau' },
-    { prompt: '> current_role', out: 'Associate Analyst @ GlobalLogic' },
-    { prompt: '> recognition', out: '4x Key Contributor (KC)' },
-    { prompt: '> status', out: 'Open to new opportunities ●' },
-  ];
-
-  function renderTerminalStatic() {
-    terminalBody.innerHTML = lines.map(l =>
-      `<div><span style="color:var(--accent)">${l.prompt}</span><br><span style="color:var(--text-muted)">${l.out}</span></div>`
-    ).join('<br>');
-  }
-
-  async function typeTerminal() {
-    for (const line of lines) {
-      const promptEl = document.createElement('div');
-      const promptSpan = document.createElement('span');
-      promptSpan.style.color = 'var(--accent)';
-      promptEl.appendChild(promptSpan);
-      terminalBody.appendChild(promptEl);
-
-      for (const ch of line.prompt) {
-        promptSpan.textContent += ch;
-        await new Promise(r => setTimeout(r, 18));
-      }
-
-      const outEl = document.createElement('div');
-      outEl.style.color = 'var(--text-muted)';
-      outEl.style.marginBottom = '14px';
-      outEl.textContent = line.out;
-      terminalBody.appendChild(outEl);
-      await new Promise(r => setTimeout(r, 200));
-    }
-  }
-
-  const terminalObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (reduceMotion) renderTerminalStatic();
-        else typeTerminal();
-        terminalObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  if (terminalBody) terminalObserver.observe(terminalBody);
 
   /* ---------------- SCROLL REVEAL ---------------- */
-  const revealTargets = document.querySelectorAll(
-    '.section-head, .skill-card, .timeline-item, .project-card, .edu-card, .cert-list, .contact-inner, .terminal'
+  const revealTargets = $$(
+    '.section-head, .section-head-row, .dashboard-card, .console, .timeline-item, .project-card, .folder, .edu-card, .contact-inner'
   );
   revealTargets.forEach(el => el.classList.add('reveal'));
-
-  const revealObserver = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver(entries => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('in'), i * 40);
+        setTimeout(() => entry.target.classList.add('in'), i * 70);
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
-
+  }, { threshold: 0.12 });
   revealTargets.forEach(el => revealObserver.observe(el));
 
-  /* ---------------- PARTICLES (hero only, sparse) ---------------- */
-  const canvas = document.getElementById('particles');
-  if (canvas && !reduceMotion) {
-    const ctx = canvas.getContext('2d');
-    let w, h, particles;
-
-    function resize() {
-      const hero = document.querySelector('.hero');
-      w = canvas.width = hero.offsetWidth;
-      h = canvas.height = hero.offsetHeight;
-    }
-
-    function initParticles() {
-      const count = Math.min(38, Math.floor((w * h) / 32000));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
-        r: Math.random() * 1.4 + 0.4,
-      }));
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      particles.forEach(p => {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(245, 185, 66, 0.35)';
-        ctx.fill();
-      });
-      // faint connecting lines for nearby particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
-          const dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < 110) {
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(79, 209, 197, ${0.08 * (1 - dist / 110)})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(draw);
-    }
-
-    resize();
-    initParticles();
-    requestAnimationFrame(draw);
-    window.addEventListener('resize', () => { resize(); initParticles(); });
-  }
-
-  /* ---------------- PROJECT BAR CHARTS (generated SVG bars) ---------------- */
+  /* ---------------- PROJECT CARD MINI BAR CHARTS ---------------- */
   function buildBars(selector, values, barWidth, gap) {
-    const g = document.querySelector(selector);
+    const g = $(selector);
     if (!g) return;
     const max = Math.max(...values);
     const totalWidth = values.length * (barWidth + gap) - gap;
     const offsetX = (300 - totalWidth) / 2;
-    values.forEach((v, i) => {
-      const h = (v / max) * 110;
+    const rects = values.map((v, i) => {
       const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
       rect.setAttribute('x', offsetX + i * (barWidth + gap));
-      rect.setAttribute('y', 130 - h);
+      rect.setAttribute('y', 130);
       rect.setAttribute('width', barWidth);
       rect.setAttribute('height', 0);
       rect.setAttribute('rx', 2);
       g.appendChild(rect);
-      requestAnimationFrame(() => {
-        rect.style.transition = `height ${reduceMotion ? '0s' : '0.8s'} cubic-bezier(.16,.84,.44,1) ${i * 0.05}s, y ${reduceMotion ? '0s' : '0.8s'} cubic-bezier(.16,.84,.44,1) ${i * 0.05}s`;
-        rect.setAttribute('y', 130 - h);
-        rect.setAttribute('height', h);
-      });
+      return [rect, (v / max) * 120, i];
     });
+    const grow = () => rects.forEach(([rect, h, i]) => {
+      rect.style.transition = reduceMotion ? 'none' : `height .9s cubic-bezier(.34,1.56,.64,1) ${i * 0.04}s, y .9s cubic-bezier(.34,1.56,.64,1) ${i * 0.04}s`;
+      rect.setAttribute('y', 130 - h);
+      rect.setAttribute('height', h);
+    });
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { requestAnimationFrame(grow); io.disconnect(); }
+    }), { threshold: 0.3 });
+    io.observe(g.closest('svg'));
   }
-
-  // Uber: ride volume by hour block (24 -> compressed to 16 bars), peak around morning/evening
-  buildBars('.bars-uber',
-    [20, 24, 30, 38, 55, 70, 62, 48, 40, 45, 58, 78, 95, 88, 60, 42],
-    12, 3.5);
-
-  // EV: state-wise adoption, a few states clearly higher
-  buildBars('.bars-ev',
-    [30, 42, 38, 90, 55, 70, 48, 100, 60, 35],
-    22, 6);
-
-  // LinkedIn: skill demand frequency
-  buildBars('.bars-linkedin',
-    [100, 88, 76, 64, 58, 44, 36],
-    32, 8);
-
+  buildBars('.bars-uber', [20, 24, 30, 38, 55, 70, 62, 48, 40, 45, 58, 78, 95, 88, 60, 42], 12, 3.5);
+  buildBars('.bars-ev', [30, 42, 38, 90, 55, 70, 48, 100, 60, 35], 22, 6);
+  buildBars('.bars-linkedin', [100, 88, 76, 64, 58, 44, 36], 32, 8);
 })();

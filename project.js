@@ -2,22 +2,7 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const REVEAL_DELAY = reduceMotion ? 0 : 1000;
 
-  /* ---------------- NAV ---------------- */
-  const nav = document.getElementById('nav');
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
-  }
-
-  const navToggle = document.getElementById('navToggle');
-  const navLinks = document.querySelector('.nav-links');
-  if (navToggle) {
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      navToggle.classList.toggle('active');
-    });
-  }
+  /* Nav, theme toggle and scroll progress are handled by script.js (loaded first). */
 
   /* ---------------- SCROLL REVEAL (generic) ---------------- */
   const revealTargets = document.querySelectorAll('.viz-card, .insight-item, .dataset-card, .proj-stats-strip');
