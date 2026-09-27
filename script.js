@@ -6,30 +6,6 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-   /* ---------------- THEME (day paper / night ink) ---------------- */
-  // One saved setting drives every page. These listeners keep pages in sync when
-  // you come back with the Back button, or have the site open in several tabs.
-  const THEME_KEY = 'aman-theme-v2';
-  const applySavedTheme = () => {
-    let t = null;
-    try { t = localStorage.getItem(THEME_KEY); } catch (e) {}
-    if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-    else document.documentElement.removeAttribute('data-theme');
-  };
-  window.addEventListener('pageshow', applySavedTheme);                                   // Back / Forward
-  window.addEventListener('storage', e => { if (e.key === THEME_KEY) applySavedTheme(); }); // other tabs
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) applySavedTheme(); });
-
-  const themeToggle = $('#themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const root = document.documentElement;
-      const dark = root.getAttribute('data-theme') === 'dark';
-      if (dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', 'dark');
-      try { localStorage.setItem(THEME_KEY, dark ? 'light' : 'dark'); } catch (e) {}
-    });
-  }
-
   /* ---------------- NAV ---------------- */
   const nav = $('#nav');
   const navToggle = $('#navToggle');
@@ -271,9 +247,10 @@
       g.appendChild(rect);
       return [rect, (v / max) * 120, i];
     });
-    const grow = () => rects.forEach(([rect, h, i]) => {
-       const d = (i * 0.2 / rects.length).toFixed(3); // whole chart done in 0.75s
+      const grow = () => rects.forEach(([rect, h, i]) => {
+      const d = (i * 0.2 / rects.length).toFixed(3); // whole chart done in 0.75s
       rect.style.transition = reduceMotion ? 'none' : `height .55s cubic-bezier(.34,1.56,.64,1) ${d}s, y .55s cubic-bezier(.34,1.56,.64,1) ${d}s`;
+      rect.setAttribute('y', 130 - h);   // bars grow upward from the baseline
       rect.setAttribute('height', h);
     });
     const io = new IntersectionObserver(entries => entries.forEach(e => {
