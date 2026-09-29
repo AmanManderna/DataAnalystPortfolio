@@ -29,32 +29,41 @@ window.CERTIFICATES = {
     title: 'Data Analytics',
     subtitle: 'Coursework on the full analytics workflow — collecting, cleaning, analysing and presenting data.',
     items: [
-      {
-        title: 'Introduction to Data Analytics',
-        issuer: 'IBM · Coursera',
-        date: '',
-        category: 'Foundations',
-        image: 'assets/certificates/analytics/ibm-intro-data-analytics.jpg',
-        desc: 'The analyst role, the data ecosystem and the end-to-end analysis process.',
+        {
+        title: 'Six Sigma Yellow Belt',
+        issuer: 'GlobalLogic · Linkedin Learning',
+        date: 'Sept 2026',
+        category: 'Yellow Belt',
+        image: 'assets/certificates/analytics/Six_sigma_yellow_belt.jpg',
+        desc: 'A well-informed project team member who assists with data collection, basic analysis, and process mapping.',
         link: ''
       },
       {
-        title: 'Excel Basics for Data Analysis',
+        title: 'Data Analysis and Visualization Foundations',
         issuer: 'IBM · Coursera',
-        date: '',
-        category: 'Excel',
-        image: 'assets/certificates/analytics/ibm-excel-basics.jpg',
-        desc: 'Cleaning, wrangling and analysing data in spreadsheets with formulas and pivot tables.',
-        link: ''
+        date: 'Sept 2024',
+        category: 'Data Analysis',
+        image: 'assets/certificates/analytics/Data_analysis.jpg',
+        desc: 'Introduction to Data Analytics, Excel Basics for Data Analysis, Data Visualization and Dashboards with Excel and Cognos, Assessment for Data Analysis and Visualization Foundations',
+        link: 'https://www.coursera.org/account/accomplishments/specialization/8D3S9LJOORKM'
       },
       {
-        title: 'Data Visualization & Dashboards with Excel & Cognos',
-        issuer: 'IBM · Coursera',
-        date: '',
-        category: 'Visualization',
-        image: 'assets/certificates/analytics/ibm-data-viz-dashboards.jpg',
-        desc: 'Building charts and interactive dashboards in Excel and IBM Cognos Analytics.',
-        link: ''
+        title: 'Business Intelligence and data analytics: Generate insights',
+        issuer: 'MACQUARIE University · Coursera',
+        date: 'Sep 2024',
+        category: 'Business Intellegence',
+        image: 'assets/certificates/analytics/Business_intellegence.jpg',
+        desc: 'Dashboard Creation, Trend Analysis, Data Presentation, Business Intelligence, Interactive Data Visualization, Data Ethics, Business Analytics, Data-Driven Decision-Making, Data Visualization, Analytics',
+        link: 'https://www.coursera.org/account/accomplishments/verify/TIXWQJSWMB9N'
+      },
+      {
+        title: 'Python 3 Programming',
+        issuer: 'University of MICHIGAN · Coursera',
+        date: 'Sep 2023',
+        category: 'Python',
+        image: 'assets/certificates/analytics/Python_programming.jpg',
+        desc: 'Python Basics, Python Functions, Files, and Dictionaries, Data Collection and Processing with Python, Python Classes and Inheritance',
+        link: 'https://www.coursera.org/account/accomplishments/specialization/N3YTXS4WPVB2'
       },
       // ↓ copy a block like the one below for each new Coursera certificate
       // {
@@ -67,63 +76,7 @@ window.CERTIFICATES = {
       //   link: 'https://coursera.org/verify/XXXXXXX'
       // },
     ]
-  },
-
-  /* ------------------------------------------------------------------------
-     ORGANISATION / CORPORATE  (GlobalLogic)
-     The five below are starter entries for the areas you mentioned —
-     rename them to match the exact certificate titles and add the rest.
-     ------------------------------------------------------------------------ */
-/*  corporate: {
-    title: 'Organisation & Corporate',
-    subtitle: 'Mandatory and professional certifications completed at GlobalLogic.',
-    items: [
-      {
-        title: 'Data Security',
-        issuer: 'GlobalLogic',
-        date: '',
-        category: 'Data Security',
-        image: '',
-        desc: 'Handling, classifying and protecting client and company data.',
-        link: ''
-      },
-      {
-        title: 'Device Security',
-        issuer: 'GlobalLogic',
-        date: '',
-        category: 'Device Security',
-        image: '',
-        desc: 'Keeping laptops, phones and removable media secure and compliant.',
-        link: ''
-      },
-      {
-        title: 'Cyber Security Awareness',
-        issuer: 'GlobalLogic',
-        date: '',
-        category: 'Cyber Security',
-        image: '',
-        desc: 'Recognising phishing, social engineering and everyday security threats.',
-        link: ''
-      },
-      {
-        title: 'POSH — Prevention of Sexual Harassment',
-        issuer: 'GlobalLogic',
-        date: '',
-        category: 'POSH',
-        image: '',
-        desc: 'Workplace conduct, rights and the redressal process under the POSH Act.',
-        link: ''
-      },
-      {
-        title: 'Six Sigma',
-        issuer: 'GlobalLogic',
-        date: '',
-        category: 'Six Sigma',
-        image: '',
-        desc: 'DMAIC and data-driven process improvement to reduce defects and variation.',
-        link: ''
-      },
-    ]
   }
-};
-*/
+}
+
+ 
